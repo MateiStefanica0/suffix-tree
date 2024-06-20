@@ -1,0 +1,45 @@
+Main:
+    - inca de la inceput am optat pentru folosirea unui sir de caractere
+    pe post de informatie din nodurile arborelui pentru a fi mai usor de 
+    implementat taskul 4
+    - pentru taskul 3 am folosit in structura un camp numit nivel, in care e
+    tinut minte nivelul din arbore la care se afla respectivul nod, pentru ca
+    pentru a testa daca exista un sufix de lungime k, este necesar sa verificam
+    daca pe nivelul k exista caracterul '$'
+    - deschiderea si inchiderea fisierelor de in si out le-am facut pentru
+    fiecare task in parte pentru ca difera indexul la care sunt in argv in
+    functie de numarul taskului
+
+Functii:
+    - pentru parcugere si functiile de statistici de la taskul 2 am folosit
+    parcurgerea in latime, la fiecare pas scotand un nod din coada,
+    prelucrandu-l si bagandu-i fiii in coada
+    - la inserare, pentru fiecare sufix, am coborat dinspre radacina arborelui
+    catre frunze pana in punctul in care sufixul actual nu mai coincide cu una
+    dintre ramurile deja prezente in arbore
+        -> de exemplu, daca deja exista ramura a-b-c-d si vreau sa inserez 
+        sufixul 'abe', cobor in arbore pana la nodul b, caruia ii adaug fiul
+        'e'
+    - pentru afisare am tinut cont de numarul de noduri de pe nivelul curent
+    pentru a stii cand e nevoie sa afisez un \n pentru a separa nivelurile
+    arborelui in fisierul de out
+    - tot la afisare, pentru ca radacina e tratata ca orice alt nod, si
+    informatia din ea este afisata, doar ca din cauza faptului ca aceasta
+    informatie nu exista, a trebuit sa am grija sa nu afisez ' ' sau \n
+    - Functia de la Taskul 4
+        -> am folosit tot parcurgerea in latime
+        -> pentru fiecare nod pe care l-am scos din coada am numarat copiii
+        si am pus un pointer sa intrepte catre unul dintre ei, daca exista un
+        singur copil, pointerul intreapta spre el
+        -> in acest caz, copiez copiii fiului la nodul tata, am alipit
+        informatiile si am eliberat nodul copil
+        -> apoi am rebagat in coada nodul la care sunt, pentru cazul in care
+        "copilul" initial al acestuia (care acum a disparut) avea la randul
+        sau un singur copil
+        -> practic, din acest motiv, in cazul in care un nod are si un singur
+        fiu si un singur nepot, parcurgerea nu mai e propriu-zis una in latime
+        -> in cazul in care nodul initial nu avea un singur fiu, operatia de 
+        "compactare" nu mai e necesara, asa ca doar trec mai departe cu
+        parcurgerea si bag fiii in coada
+    - pentru eliberarea arborelui am folosit tot parcurgerea in latime
+    
